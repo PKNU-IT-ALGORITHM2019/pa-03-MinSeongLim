@@ -11,12 +11,23 @@ public class Sort {
 		System.out.println("		Random1000		Reverse1000		Random10000		Reverse10000		Random100000		Reverse100000");
 		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------");
 	}
-	public void get_time(double time)
+	public void exe()
+	{
+		bubble_time();
+		selection_time();
+		insert_time();
+		merge_time();
+		quick_time();
+		heap_time();
+		lib_time();
+	}
+	
+	private void get_time(double time)
 	{
 		System.out.printf("%.5fsec		",(System.currentTimeMillis() - time) / 1000);
 	}
 	
-	public void create_array()
+	private void create_array()
 	{
 		list = new ArrayList<int[]>();
 		int k = 1000;
@@ -36,7 +47,7 @@ public class Sort {
 		}		
 	}
 	
-	public void lib_time() {
+	private void lib_time() {
 		System.out.print("Library Sort	");
 		create_array();
 		for(int i = 0 ; i<6; i++)
@@ -48,7 +59,7 @@ public class Sort {
 		System.out.println("\n");
 	}
 	
-	public void heap_time() {
+	private void heap_time() {
 		System.out.print("Heap Sort	");
 		create_array();
 		for(int i = 0 ; i<6; i++)
@@ -60,7 +71,7 @@ public class Sort {
 		System.out.println("\n");
 	}
 	
-	public void quick_time()
+	private void quick_time()
 	{
 		for(int p = 0 ; p <5; p++)
 		{
@@ -91,7 +102,7 @@ public class Sort {
 		}
 	}
 		
-	public void merge_time() {
+	private void merge_time() {
 		System.out.print("Merge Sort	");
 		create_array();
 		for(int i = 0 ; i<6; i++)
@@ -103,7 +114,7 @@ public class Sort {
 		System.out.println("\n");
 	}
 	
-	public void insert_time() {
+	private void insert_time() {
 		System.out.print("Insert Sort	");
 		create_array();
 		for(int i = 0 ; i<6; i++)
@@ -115,7 +126,7 @@ public class Sort {
 		System.out.println("\n");
 	}
 
-	public void selection_time() {
+	private void selection_time() {
 		System.out.print("Selection Sort	");
 		create_array();
 		for(int i = 0 ; i<6; i++)
@@ -127,7 +138,7 @@ public class Sort {
 		System.out.println("\n");	
 	}
 
-	public void bubble_time() {
+	private void bubble_time() {
 		System.out.print("Bubble Sort	");
 		create_array();
 		for(int i = 0 ; i<6; i++)
@@ -139,7 +150,7 @@ public class Sort {
 		System.out.println("\n");
 	}
 
-	public void bubble_sort(int[] arr)
+	private void bubble_sort(int[] arr)
 	{
 		for(int j = arr.length-1; j>=0; j--)
 		{
@@ -155,7 +166,7 @@ public class Sort {
 		}
 	}
 
-	public void selection_sort(int[] arr)
+	private void selection_sort(int[] arr)
 	{
 		for(int i = arr.length-1; i>0; i--)
 		{
@@ -175,7 +186,7 @@ public class Sort {
 		}		
 	}
 	
-	public void insert_sort(int[] arr)
+	private void insert_sort(int[] arr)
 	{
 		for(int i = 1; i<arr.length; i++)
 		{
@@ -194,7 +205,7 @@ public class Sort {
 		}
 	}
 	
-	public void merge_sort(int[] arr, int b, int e)
+	private void merge_sort(int[] arr, int b, int e)
 	{
 		if(b<e)
 		{
@@ -205,7 +216,7 @@ public class Sort {
 		}		
 	}
 
-	public void merge(int[] arr, int b, int r, int e) {
+	private void merge(int[] arr, int b, int r, int e) {
 		int[] tmp = new int[arr.length];
 		int i = b;
 		int k = b;
@@ -226,7 +237,7 @@ public class Sort {
 			arr[m] = tmp[m];			
 	}
 	
-	public void quick_sort(int[] arr, int b, int e, int p)
+	private void quick_sort(int[] arr, int b, int e, int p)
 	{		
 		if(b<e)
 		{			
@@ -237,7 +248,7 @@ public class Sort {
 		}
 	}
 	
-	public void action(int[] arr, int b, int e, int p)
+	private void action(int[] arr, int b, int e, int p)
 	{
 		if(p==1)
 		{
@@ -268,7 +279,7 @@ public class Sort {
 		}
 	}
 
-	public int partition(int[] arr, int b, int e, int p)
+	private int partition(int[] arr, int b, int e, int p)
 	{		
 		int i = b - 1;
 		int j = b;		
@@ -291,7 +302,7 @@ public class Sort {
 		return i+1;
 	}
 	
-	public int middle(int[] arr, int a, int b, int c)
+	private int middle(int[] arr, int a, int b, int c)
 	{
 		if( (arr[a]< arr[b] && arr[b]< arr[c]) || (arr[c]<arr[b] && arr[b]<arr[a]))
 			return b;
@@ -301,43 +312,29 @@ public class Sort {
 			return c;
 	}
 	
-	public void heap_sort(int[] arr)
+	private void heap_sort(int[] arr)
 	{
 		int k = arr.length;
-		heap(arr, 0, k);
+		heap(arr, 0,k);
 		while(k>0)
 		{
 			int tmp = arr[0];
 			arr[0] = arr[k-1];
 			arr[k-1] = tmp;
-			heapify(arr,0,-1+(k--));
+			heap(arr,0,-1+(k--));
 		}
 	}
-
-	private void heap(int[] arr, int i ,int j)
+	
+	private void heap(int[] arr, int i, int j)
 	{		
 		if(check(arr,i,j))
 			return;
 		
-		heap(arr,i*2+1,j);
-		heap(arr,i*2+2,j);
-		
-		if(arr[i] < arr[i*2+1])
+		if(j==arr.length)
 		{
-			change(arr,i,i*2+1);
 			heap(arr,i*2+1,j);
-		}
-		if(arr[i] < arr[i*2+2])
-		{
-			change(arr,i,i*2+2);
 			heap(arr,i*2+2,j);
-		}			
-	}
-	
-	private void heapify(int[] arr, int i, int j)
-	{
-		if(check(arr,i,j))
-			return;	
+		}
 		
 		int index;
 		if(arr[i*2+1] > arr[i*2+2])
@@ -347,15 +344,16 @@ public class Sort {
 		
 		if(arr[i] >= arr[index])
 			return;
-		change(arr,i,index);			
-		heapify(arr,index,j);				
+		
+		change(arr,i,index);
+		heap(arr,index,j);		
 	}
 	
 	private boolean check(int[] arr, int i, int j)
 	{
 		if(i*2+1>j-1)
 			return true;
-		if(i*2+1 <= j -1 && i*2+2 > j -1)
+		if(i*2+1 <= j -1 && i*2+2 > j - 1)
 		{
 			if(arr[i]>arr[i*2+1])
 				return true;
