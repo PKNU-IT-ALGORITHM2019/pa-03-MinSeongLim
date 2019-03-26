@@ -89,16 +89,16 @@ public class Sort {
 				System.out.print("5		");
 			for(int i = 0 ; i<6; i++)
 			{
-				if(i == 5)
-				{
-					System.out.println("Stack Overflow");
-					break;
+				try	{
+					long time = System.currentTimeMillis();
+					quick_sort(list.get(i), 0 , list.get(i).length-1 , p);
+					get_time(time);
 				}
-				long time = System.currentTimeMillis();
-				quick_sort(list.get(i), 0 , list.get(i).length-1 , p);
-				get_time(time);				
+				catch(StackOverflowError e)	{
+					System.out.print("StackOverFlow Error");
+				}								
 			}
-			System.out.println("");
+			System.out.println("\n");
 		}
 	}
 		
