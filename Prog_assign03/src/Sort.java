@@ -11,6 +11,7 @@ public class Sort {
 		System.out.println("		Random1000		Reverse1000		Random10000		Reverse10000		Random100000		Reverse100000");
 		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------");
 	}
+	
 	public void exe()
 	{
 		bubble_time();
