@@ -4,16 +4,19 @@ import java.util.Arrays;
 public class Sort {
 	
 	ArrayList<int[]> list;
+	int[] arr;
 
 	public Sort()
 	{
 		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------");
 		System.out.println("		Random1000		Reverse1000		Random10000		Reverse10000		Random100000		Reverse100000");
 		System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------");
+		exe();
 	}
 	
 	public void exe()
 	{
+		create_array();
 		bubble_time();
 		selection_time();
 		insert_time();
@@ -50,9 +53,9 @@ public class Sort {
 	
 	private void lib_time() {
 		System.out.print("Library Sort	");
-		create_array();
 		for(int i = 0 ; i<6; i++)
 		{
+			arr = list.get(i).clone();
 			long time = System.currentTimeMillis();
 			Arrays.sort(list.get(i));
 			get_time(time);
@@ -62,11 +65,11 @@ public class Sort {
 	
 	private void heap_time() {
 		System.out.print("Heap Sort	");
-		create_array();
 		for(int i = 0 ; i<6; i++)
 		{
+			arr = list.get(i).clone();
 			long time = System.currentTimeMillis();
-			heap_sort(list.get(i));
+			heap_sort(arr);
 			get_time(time);
 		}
 		System.out.println("\n");
@@ -76,7 +79,6 @@ public class Sort {
 	{
 		for(int p = 0 ; p <5; p++)
 		{
-			create_array();			
 			System.out.print("Quick ");
 			if(p ==0)
 				System.out.print("1		");
@@ -90,9 +92,10 @@ public class Sort {
 				System.out.print("5		");
 			for(int i = 0 ; i<6; i++)
 			{
+				arr = list.get(i).clone();
 				try	{
 					long time = System.currentTimeMillis();
-					quick_sort(list.get(i), 0 , list.get(i).length-1 , p);
+					quick_sort(arr, 0 , arr.length-1 , p);
 					get_time(time);
 				}
 				catch(StackOverflowError e)	{
@@ -105,11 +108,11 @@ public class Sort {
 		
 	private void merge_time() {
 		System.out.print("Merge Sort	");
-		create_array();
 		for(int i = 0 ; i<6; i++)
 		{
+			arr = list.get(i).clone();
 			long time = System.currentTimeMillis();
-			merge_sort(list.get(i), 0 , list.get(i).length-1);
+			merge_sort(arr, 0 , arr.length-1);
 			get_time(time);
 		}
 		System.out.println("\n");
@@ -117,11 +120,11 @@ public class Sort {
 	
 	private void insert_time() {
 		System.out.print("Insert Sort	");
-		create_array();
 		for(int i = 0 ; i<6; i++)
 		{
+			arr = list.get(i).clone();
 			long time = System.currentTimeMillis();
-			insert_sort(list.get(i));
+			insert_sort(arr);
 			get_time(time);
 		}
 		System.out.println("\n");
@@ -129,11 +132,11 @@ public class Sort {
 
 	private void selection_time() {
 		System.out.print("Selection Sort	");
-		create_array();
 		for(int i = 0 ; i<6; i++)
 		{
+			arr = list.get(i).clone();
 			long time = System.currentTimeMillis();
-			selection_sort(list.get(i));
+			selection_sort(arr);
 			get_time(time);
 		}
 		System.out.println("\n");	
@@ -141,11 +144,11 @@ public class Sort {
 
 	private void bubble_time() {
 		System.out.print("Bubble Sort	");
-		create_array();
 		for(int i = 0 ; i<6; i++)
 		{
+			arr = list.get(i).clone();
 			long time = System.currentTimeMillis();
-			bubble_sort(list.get(i));
+			bubble_sort(arr);
 			get_time(time);
 		}
 		System.out.println("\n");
